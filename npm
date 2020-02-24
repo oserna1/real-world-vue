@@ -1,0 +1,8 @@
++ install@0.13.0
+added 1 package from 1 contributor and audited 24905 packages in 7.089s
+
+35 packages are looking for funding
+  run `npm fund` for details
+
+found 1 high severity vulnerability
+  run `npm audit fix` to fix them, or `npm audit` for details
