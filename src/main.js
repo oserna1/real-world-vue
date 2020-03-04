@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import BaseIcon from './components/BaseIcon'
+import 'nprogress/nprogress.css'
 
 const requireComponent = require.context(
   './components',

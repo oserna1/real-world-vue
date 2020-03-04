@@ -23,21 +23,37 @@
 <script>
 import EventCard from '../components/EventCard.vue'
 import { mapState, mapGetters } from 'vuex'
+import store from '../store'
+
+function getPageEvents(routeTo, next) {
+  const currentPage = parseInt(routeTo.query.page) || 1
+  store
+    .dispatch('event/fetchEvents', {
+      page: currentPage
+    })
+    .then(() => {
+      routeTo.params.page = currentPage
+      next()
+    })
+}
 
 export default {
+  props: {
+    page: {
+      type: Number,
+      required: true
+    }
+  },
+  beforeRouteUpdate(routeTo, routeFrom, next) {
+    getPageEvents(routeTo, next)
+  },
   components: {
     EventCard
   },
-  created() {
-    this.$store.dispatch('event/fetchEvents', {
-      perPage: 3,
-      page: this.page
-    })
+  beforeRouteEnter(routeTo, routeFrom, next) {
+    getPageEvents(routeTo, next)
   },
   computed: {
-    page() {
-      return parseInt(this.$route.query.page) || 1
-    },
     // using getters with namespacing and withouth mapGetters
     // numOfEvents() {
     //   return this.$store.getters['event/getTotalEvents']

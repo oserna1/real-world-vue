@@ -21,24 +21,24 @@
       }}</span>
     </h2>
     <ul class="list-group">
-      <li v-for="(attendee, index) in event.attendees" :key="index" class="list-item">
+      <li
+        v-for="(attendee, index) in event.attendees"
+        :key="index"
+        class="list-item"
+      >
         <b>{{ attendee.name }}</b>
       </li>
     </ul>
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
-
 export default {
-  props: ['id'],
-  created() {
-    this.fetchEvent(this.id)
-  },
-  computed: mapState({
-    event: state => state.event.event
-  }),
-  methods: mapActions('event', ['fetchEvent'])
+  props: {
+    event: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 <style scoped>
