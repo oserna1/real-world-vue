@@ -6,6 +6,12 @@ import router from './router'
 import store from './store'
 import BaseIcon from './components/BaseIcon'
 import 'nprogress/nprogress.css'
+import Vuelidate from 'vuelidate/src'
+import DateFilter from './filters/date'
+
+Vue.filter('date', DateFilter)
+
+Vue.use(Vuelidate)
 
 const requireComponent = require.context(
   './components',
